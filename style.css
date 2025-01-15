@@ -26,6 +26,7 @@ nav ul {
 }
 
 nav ul li {
+    position: relative; 
     margin-left: 20px;
 }
 
@@ -33,10 +34,69 @@ nav ul li a {
     text-decoration: none;
     color: white;
     transition: color 0.3s;
+    padding: 10px 15px;
+    display: inline-block;
 }
 
 nav ul li a:hover {
     color: #ff6347;
+}
+
+.dropdown-content {
+    display: none; 
+    position: absolute;
+    background-color: #444;
+    min-width: 150px;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    border-radius: 5px;
+    overflow: hidden;
+    margin-top: 0; 
+    left: 0; 
+    right: auto; 
+}
+
+.dropdown-content li {
+    margin: 0;
+    padding: 0;
+}
+
+.dropdown-content li a {
+    padding: 10px 15px;
+    color: white;
+    display: block;
+    text-align: left;
+}
+
+.dropdown-content li a:hover {
+    background-color: #555;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown {
+    position: relative; 
+}
+
+body {
+    overflow-x: hidden; 
+}
+
+.dropdown:hover .dropdown-content {
+    animation: fadeIn 0.2s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .hero {
@@ -44,7 +104,7 @@ nav ul li a:hover {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background: linear-gradient(to right, #ff6347, #ff9472);
+    background: linear-gradient(to right, #ff0000, #2f00ff);
     color: white;
     text-align: center;
 }
