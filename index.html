@@ -9,7 +9,6 @@
     <link rel="apple-touch-icon" sizes="180x180" href="Icons/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="Icons/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="Icons/favicon-16x16.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="Icons/favicon.ico">
     <link rel="manifest" href="Icons/site.webmanifest">
     <meta name="theme-color" content="#ffffff">
 </head>
@@ -18,9 +17,15 @@
         <div class="logo">portfolio</div>
         <ul>
             <li><a href="#">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="projects.html">Projects</a></li>
-            <li><a href="contact.html">Contact</a></li>
+            <li><a href="about.html">About</a></li>
+            <li class="dropdown">
+                <a href="#" class="dropbtn">Projects</a>
+                <ul class="dropdown-content">
+                    <li><a href="films.html">Films</a></li>
+                    <li><a href="3dmodels.html">3D Modelling</a></li>
+                    <li><a href="editing.html">Video Editing</a></li>
+                </ul>
+            </li>
         </ul>
     </nav>
     <section class="hero">
@@ -29,14 +34,6 @@
             <p>Hey hey hey</p>
             <button onclick="scrollToAbout()">Learn More</button>
         </div>
-    </section>
-    <section class="about" id="about">
-        <h2>About Me</h2>
-        <p>MY NAME IS NOAH ROBIN DAVID PAUL ODGER BUCKSTRAP THE 4TH.</p>
-        <p>I LIVE AT 9 BOTCHERGATE CARLISLE CUMBRIA ZIP CODE: CA11QP IN THE UK</p>
-        <p>MY PHONE NUMBER IS 01228 531316. MY CREDIT CARD STUFF IS 5384 1120 5816 3765 EXPIRY DATE: 05/2027 CV: 243</p>
-        <p>MY EMAIL IS poopscoop42@gmail.com</p>
-            <img src="Media/smart.png" alt="smart" width="500" height="500">
     </section>
 
     <script src="script.js"></script>
