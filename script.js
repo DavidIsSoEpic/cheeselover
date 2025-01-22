@@ -72,7 +72,7 @@ function init() {
 
         model2.scale.set(0.4, 0.4, 0.4);
 
-        model2.position.set(8, 10, 0);
+        model2.position.set(7, 10, 0);
 
         const size = box.getSize(new THREE.Vector3());
         const maxDim = Math.max(size.x, size.y, size.z);
