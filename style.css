@@ -35,11 +35,11 @@ body {
     margin: 0;
     font-family: 'Poppins', sans-serif;
     color: #333;
-    overflow: hidden; /* Prevent scrolling */
+    overflow: hidden;
 }
 
 nav {
-    position: fixed; /* Make nav fixed to overlay the 3D scene */
+    position: fixed; 
     top: 0;
     left: 0;
     right: 0;
@@ -47,9 +47,9 @@ nav {
     justify-content: space-between;
     align-items: center;
     padding: 20px 50px;
-    background-color: rgba(51, 51, 51); /* Semi-transparent background */
+    background-color: rgba(51, 51, 51); 
     color: white;
-    z-index: 1000; /* Ensure nav is above the 3D scene */
+    z-index: 1000; 
 }
 
 nav .logo {
@@ -128,7 +128,7 @@ nav ul li a:hover {
 }
 
 .hero {
-    position: fixed; /* Make hero fixed to overlay the 3D scene */
+    position: fixed; 
     top: 0;
     left: 0;
     right: 0;
@@ -138,8 +138,8 @@ nav ul li a:hover {
     align-items: center;
     color: white;
     text-align: center;
-    z-index: 10; /* Ensure hero is above the 3D scene but below the nav */
-    pointer-events: none; /* Allow interaction with 3D scene */
+    z-index: 10; 
+    pointer-events: none; 
 }
 
 .hero h1 {
@@ -160,7 +160,7 @@ nav ul li a:hover {
     border-radius: 5px;
     cursor: pointer;
     font-size: 16px;
-    pointer-events: auto; /* Allow button to be clickable */
+    pointer-events: auto; 
 }
 
 .hero button:hover {
@@ -174,13 +174,53 @@ nav ul li a:hover {
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: 1; /* Ensure canvas is below other elements */
-}
-.about {
-    margin-top: 50px; /* Add margin to push the section down */
-    padding: 20px;    /* Optional: Adds space inside the section */
+    z-index: 1; 
 }
 
-.about h2 {
-    margin-top: 20px; /* Adjust this value as needed */
+.background-dropdown {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    z-index: 1000;
+}
+
+.background-dropdown .dropbtn {
+    background-color: #444;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s;
+}
+
+.background-dropdown .dropbtn:hover {
+    background-color: #ff6347;
+}
+
+.background-dropdown .dropdown-content {
+    display: none;
+    position: absolute;
+    top: -140px; 
+    left: 0;
+    background-color: rgba(68, 68, 68, 0.9);
+    min-width: 150px;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    animation: fadeIn 0.3s ease-in-out;
+    overflow: hidden;
+}
+
+.background-dropdown:hover .dropdown-content,
+.background-dropdown .dropdown-content:hover {
+    display: block;
+}
+
+.background-dropdown .dropdown-content li {
+    padding: 10px 15px;
+    color: white;
+    cursor: pointer;
+}
+
+.background-dropdown .dropdown-content li:hover {
+    background-color: rgba(85, 85, 85, 0.9);
 }
