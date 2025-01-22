@@ -10,14 +10,7 @@ function init() {
     renderer.setSize(window.innerWidth, window.innerHeight);
 
     const textureLoader = new THREE.TextureLoader();
-    textureLoader.load('media/silly.png', function (texture) {
-        const aspectRatio = texture.image.width / texture.image.height;
-        const planeGeometry = new THREE.PlaneGeometry(100 * aspectRatio, 100);
-        const planeMaterial = new THREE.MeshBasicMaterial({ map: texture, transparent: true });
-        backgroundPlane = new THREE.Mesh(planeGeometry, planeMaterial);
-        backgroundPlane.position.z = 10;
-        scene.add(backgroundPlane);
-    });
+    setBackground('media/silly.png', textureLoader);
 
     const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
     scene.add(ambientLight);
@@ -37,60 +30,58 @@ function init() {
     const loader = new THREE.GLTFLoader();
     Promise.all([
         new Promise((resolve, reject) => {
-            loader.load(
-                'models/scene.gltf',
-                (gltf) => resolve(gltf),
-                undefined,
-                (error) => reject(error)
-            );
+            loader.load('models/scene.gltf', gltf => resolve(gltf), undefined, reject);
         }),
         new Promise((resolve, reject) => {
-            loader.load(
-                'models/scene.gltf',
-                (gltf) => resolve(gltf),
-                undefined,
-                (error) => reject(error)
-            );
+            loader.load('models/scene.gltf', gltf => resolve(gltf), undefined, reject);
         })
     ]).then(([firstEyeball, secondEyeball]) => {
         model1 = firstEyeball.scene;
-        scene.add(model1);
-
-        const box = new THREE.Box3().setFromObject(model1);
-        const center = box.getCenter(new THREE.Vector3());
-        model1.position.sub(center);
-
-        model1.scale.set(0.35, 0.35, 0.35);
-        model1.position.set(-25, 10, 0);
-
         model2 = secondEyeball.scene;
-        scene.add(model2);
-
-        const box2 = new THREE.Box3().setFromObject(model2);
-        const center2 = box2.getCenter(new THREE.Vector3());
-        model2.position.sub(center2);
-
-        model2.scale.set(0.4, 0.4, 0.4);
-        model2.position.set(7, 10, 0);
-
-        const size = box.getSize(new THREE.Vector3());
-        const maxDim = Math.max(size.x, size.y, size.z);
-        const fov = camera.fov * (Math.PI / 180);
-        let cameraZ = Math.abs(maxDim / 2 / Math.tan(fov / 2));
-        camera.position.z = cameraZ * 1.5;
-
-        camera.lookAt(scene.position);
-
+        setupModels();
         loadingScreen.style.display = 'none';
-    }).catch((error) => {
-        console.error('An error happened', error);
-    });
+    }).catch(error => console.error('An error happened', error));
 
     camera.position.z = 50;
 
     document.addEventListener('mousemove', onMouseMove, false);
-
     animate();
+    setupBackgroundPicker();
+}
+
+function setBackground(image, textureLoader) {
+    textureLoader.load(image, texture => {
+        const aspectRatio = texture.image.width / texture.image.height;
+        const planeGeometry = new THREE.PlaneGeometry(100 * aspectRatio, 100);
+        const planeMaterial = new THREE.MeshBasicMaterial({ map: texture, transparent: true });
+        if (backgroundPlane) scene.remove(backgroundPlane);
+        backgroundPlane = new THREE.Mesh(planeGeometry, planeMaterial);
+        backgroundPlane.position.z = 10;
+        scene.add(backgroundPlane);
+    });
+}
+
+function setupModels() {
+    const box = new THREE.Box3().setFromObject(model1);
+    const center = box.getCenter(new THREE.Vector3());
+    model1.position.sub(center);
+    model1.scale.set(0.35, 0.35, 0.35);
+    model1.position.set(-25, 10, 0);
+    scene.add(model1);
+
+    const box2 = new THREE.Box3().setFromObject(model2);
+    const center2 = box2.getCenter(new THREE.Vector3());
+    model2.position.sub(center2);
+    model2.scale.set(0.4, 0.4, 0.4);
+    model2.position.set(7, 10, 0);
+    scene.add(model2);
+
+    const size = box.getSize(new THREE.Vector3());
+    const maxDim = Math.max(size.x, size.y, size.z);
+    const fov = camera.fov * (Math.PI / 180);
+    const cameraZ = Math.abs(maxDim / 2 / Math.tan(fov / 2));
+    camera.position.z = cameraZ * 1.5;
+    camera.lookAt(scene.position);
 }
 
 function onMouseMove(event) {
@@ -100,19 +91,56 @@ function onMouseMove(event) {
 
 function animate() {
     requestAnimationFrame(animate);
-
     if (model1 && model2) {
         const rotationX = -mouseY * Math.PI / 4;
         const rotationY = mouseX * Math.PI / 4;
-
         model1.rotation.x = rotationX;
         model1.rotation.y = rotationY;
         model2.rotation.x = rotationX;
         model2.rotation.y = rotationY;
     }
-
     renderer.render(scene, camera);
 }
+
+function setupBackgroundPicker() {
+    const textureLoader = new THREE.TextureLoader();
+    const backgroundOptions = document.querySelectorAll('.background-option');
+
+    backgroundOptions.forEach(option => {
+        option.addEventListener('click', () => {
+            const image = option.dataset.image; 
+            if (image) {
+                console.log(`Changing background to: ${image}`);
+                setBackground(image, textureLoader);
+            } else {
+                console.error("Background image path is missing.");
+            }
+        });
+    });
+}
+
+function setBackground(imagePath, textureLoader) {
+    textureLoader.load(imagePath, (texture) => {
+        const aspectRatio = texture.image.width / texture.image.height;
+        const planeGeometry = new THREE.PlaneGeometry(100 * aspectRatio, 100);
+        const planeMaterial = new THREE.MeshBasicMaterial({ map: texture, transparent: true });
+
+        if (backgroundPlane) {
+            scene.remove(backgroundPlane);
+        }
+
+        backgroundPlane = new THREE.Mesh(planeGeometry, planeMaterial);
+        backgroundPlane.position.z = 10;
+        scene.add(backgroundPlane);
+    });
+}
+
+setupBackgroundPicker();
+
+
+setupBackgroundPicker();
+
+
 
 function onWindowResize() {
     camera.aspect = window.innerWidth / window.innerHeight;
@@ -121,5 +149,4 @@ function onWindowResize() {
 }
 
 window.addEventListener('resize', onWindowResize, false);
-
 init();
