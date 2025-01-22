@@ -2,18 +2,20 @@ let scene, camera, renderer, model1, model2, backgroundPlane;
 let mouseX = 0, mouseY = 0;
 
 function init() {
+    const loadingScreen = document.getElementById('loading-screen');
+
     scene = new THREE.Scene();
     camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
     renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('myCanvas') });
     renderer.setSize(window.innerWidth, window.innerHeight);
 
     const textureLoader = new THREE.TextureLoader();
-    textureLoader.load('media/silly.png', function(texture) {
+    textureLoader.load('media/silly.png', function (texture) {
         const aspectRatio = texture.image.width / texture.image.height;
         const planeGeometry = new THREE.PlaneGeometry(100 * aspectRatio, 100);
         const planeMaterial = new THREE.MeshBasicMaterial({ map: texture, transparent: true });
         backgroundPlane = new THREE.Mesh(planeGeometry, planeMaterial);
-        backgroundPlane.position.z = 10; 
+        backgroundPlane.position.z = 10;
         scene.add(backgroundPlane);
     });
 
@@ -33,7 +35,6 @@ function init() {
     scene.add(rimLight);
 
     const loader = new THREE.GLTFLoader();
-    
     Promise.all([
         new Promise((resolve, reject) => {
             loader.load(
@@ -60,7 +61,6 @@ function init() {
         model1.position.sub(center);
 
         model1.scale.set(0.35, 0.35, 0.35);
-
         model1.position.set(-25, 10, 0);
 
         model2 = secondEyeball.scene;
@@ -71,7 +71,6 @@ function init() {
         model2.position.sub(center2);
 
         model2.scale.set(0.4, 0.4, 0.4);
-
         model2.position.set(7, 10, 0);
 
         const size = box.getSize(new THREE.Vector3());
@@ -81,12 +80,14 @@ function init() {
         camera.position.z = cameraZ * 1.5;
 
         camera.lookAt(scene.position);
+
+        loadingScreen.style.display = 'none';
     }).catch((error) => {
         console.error('An error happened', error);
     });
 
     camera.position.z = 50;
-    
+
     document.addEventListener('mousemove', onMouseMove, false);
 
     animate();
