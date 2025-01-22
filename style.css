@@ -143,3 +143,11 @@ nav ul li a:hover {
     height: 100%;
     z-index: 1; /* Ensure canvas is below other elements */
 }
+.about {
+    margin-top: 50px; /* Add margin to push the section down */
+    padding: 20px;    /* Optional: Adds space inside the section */
+}
+
+.about h2 {
+    margin-top: 20px; /* Adjust this value as needed */
+}
