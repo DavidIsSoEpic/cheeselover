@@ -180,7 +180,7 @@ nav ul li a:hover {
 .background-dropdown {
     position: fixed;
     bottom: 20px;
-    left: 20px;
+    left: 10px;
     z-index: 1000;
 }
 
