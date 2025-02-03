@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <title>Films</title>
+    <link rel="stylesheet" href="filmstyles.css">
 </head>
 <body>
+
     <nav>
         <div class="logo">portfolio</div>
         <ul>
@@ -23,6 +23,47 @@
             </li>
         </ul>
     </nav>
-    <script src="script.js"></script>
+
+    <section class="films-hero">
+        <h1>My Films</h1>
+    </section>
+
+    <section class="featured-film">
+        <h2>Featured Film</h2>
+        <div class="film-container">
+            <video controls>
+                <source src="media/featured-film.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <div class="film-info">
+                <p>i need to add a description</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="film-gallery">
+        <h2>More Films</h2>
+        <div class="film-grid">
+            <div class="film-card">
+                <video controls>
+                    <source src="media/film1.mp4" type="video/mp4">
+                </video>
+                <p>Film uno</p>
+            </div>
+            <div class="film-card">
+                <video controls>
+                    <source src="media/film2.mp4" type="video/mp4">
+                </video>
+                <p>Film deux</p>
+            </div>
+            <div class="film-card">
+                <video controls>
+                    <source src="media/film3.mp4" type="video/mp4">
+                </video>
+                <p>Film three</p>
+            </div>
+        </div>
+    </section>
+
 </body>
 </html>
