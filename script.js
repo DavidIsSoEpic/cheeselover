@@ -122,7 +122,14 @@ function setupBackgroundPicker() {
 function setBackground(imagePath, textureLoader) {
     textureLoader.load(imagePath, (texture) => {
         const aspectRatio = texture.image.width / texture.image.height;
-        const planeGeometry = new THREE.PlaneGeometry(100 * aspectRatio, 100);
+        
+        let scaleFactor = 1.0;  
+        
+        if (imagePath.includes("back2.png")) { 
+            scaleFactor = 3.7;  
+        }
+
+        const planeGeometry = new THREE.PlaneGeometry(100 * aspectRatio * scaleFactor, 100 * scaleFactor);
         const planeMaterial = new THREE.MeshBasicMaterial({ map: texture, transparent: true });
 
         if (backgroundPlane) {
@@ -130,10 +137,17 @@ function setBackground(imagePath, textureLoader) {
         }
 
         backgroundPlane = new THREE.Mesh(planeGeometry, planeMaterial);
-        backgroundPlane.position.z = 10;
+
+        if (imagePath.includes("back2.png")) {
+            backgroundPlane.position.set(-6.1, -69.5, 8); 
+        } else {
+            backgroundPlane.position.set(0, 0, 10); 
+        }
+
         scene.add(backgroundPlane);
     });
 }
+
 
 setupBackgroundPicker();
 
