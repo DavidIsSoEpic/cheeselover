@@ -1,64 +1,276 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-    <link rel="apple-touch-icon" sizes="180x180" href="Icons/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="Icons/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="Icons/favicon-16x16.png">
-    <link rel="manifest" href="Icons/site.webmanifest">
-    <meta name="theme-color" content="#ffffff">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Noah Duvoux Portfolio</title>
+
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Jomhuria&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@400;700&display=swap" rel="stylesheet">
+
+<!-- Stylesheet -->
+<link rel="stylesheet" href="style.css">
+
+<!-- Favicon -->
+<link rel="apple-touch-icon" sizes="180x180" href="Icons/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="Icons/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="Icons/favicon-16x16.png">
+<link rel="manifest" href="Icons/site.webmanifest">
+<meta name="theme-color" content="#ffffff">
 </head>
 <body>
-    <div id="loading-screen">
-        <div class="loading-spinner"></div>
-        <p>Loading...</p>
-    </div>    
-    <nav>
-        <div class="logo">portfolio</div>
-        <ul>
-            <li><a href="#">Home</a></li>
-            <li><a href="about.html">About</a></li>
-            <li class="dropdown">
-                <a href="#" class="dropbtn">Projects</a>
-                <ul class="dropdown-content">
-                    <li><a href="films.html">Films</a></li>
-                    <li><a href="3dmodels.html">3D Modelling</a></li>
-                    <li><a href="editing.html">Video Editing</a></li>
-                </ul>
-            </li>
-        </ul>
-    </nav>
-    <section class="hero">
-        <div>
-            <h1>Portfolio</h1>
-            <p>Hey hey hey</p>
-            <button onclick="scrollToAbout()">Learn More</button>
-        </div>
-    </section>
 
-    <canvas id="myCanvas"></canvas>
+<!-- Loading Screen -->
+<div id="loading-screen">
+    <div class="loading-spinner"></div>
+    <p>Loading...</p>
+</div>    
+<a href="#" class="logo">
+  <img src="media/logo.png" alt="Noah Duvoux Logo">
+</a>
+<!-- HERO SECTION -->
+<section class="hero">
+    <svg class="hero-svg" viewBox="0 0 800 550" preserveAspectRatio="xMidYMid meet">
+  
+      <!-- MAIN TEXT SHADOW -->
+      <text
+        x="398"
+        y="93"
+        text-anchor="middle"
+        dominant-baseline="middle"
+        font-family="Jomhuria"
+        font-size="80"
+        fill="#020037"
+        opacity="0.1"
+        transform="translate(4 4)"
+      >
+        Noah Duvoux
+      </text>
+  
+      <!-- MAIN TEXT -->
+      <text
+        x="400"
+        y="95"
+        text-anchor="middle"
+        dominant-baseline="middle"
+        font-family="Jomhuria"
+        font-size="80"
+        fill="#05026d"
+        opacity="0.8"
+        stroke="#020037"
+        stroke-width="1.6"
+      >
+        Noah Duvoux
+      </text>
+  
+      <!-- UNDERLINE -->
+      <rect
+        x="195"
+        y="120"
+        width="410"
+        height="4"
+        rx="3"
+        fill="#000"
+      />
+  
+      <!-- SUBTEXT SHADOW -->
+      <text
+        x="399"
+        y="149.5"
+        text-anchor="middle"
+        dominant-baseline="middle"
+        font-family="Jomhuria"
+        font-size="40"
+        fill="#020037"
+        opacity="0.1"
+        transform="translate(2 2)"
+      >
+        Wholesomly, Awesome, Sauce
+      </text>
+  
+      <!-- SUBTEXT -->
+      <text
+        x="400"
+        y="150"
+        text-anchor="middle"
+        dominant-baseline="middle"
+        font-family="Jomhuria"
+        font-size="40"
+        fill="#000000"
+        opacity="0.8"
+        stroke="#FFFFFF"
+        stroke-width="1.2"
+        paint-order="stroke fill"
+      >
+        Wholesomly, Awesome, Sauce
+      </text>
+  
+      <!-- ABOUT BACKGROUND RECT -->
+      <rect
+        x="200"
+        y="182"
+        width="100"
+        height="40"
+        rx="8"
+        fill="white"
+        opacity="0.15"
+      />
+      <!-- ABOUT TEXT SHADOW -->
+      <text
+        x="249.5"
+        y="205"
+        text-anchor="middle"
+        dominant-baseline="middle"
+        font-family="League Spartan, sans-serif"
+        font-size="30"
+        font-weight="700"
+        fill="#000000"
+        opacity="0.1"
+        transform="translate(2 2)"
+      >
+        About
+      </text>
+      <text
+        x="250"
+        y="205"
+        text-anchor="middle"
+        dominant-baseline="middle"
+        font-family="League Spartan, sans-serif"
+        font-size="30"
+        font-weight="700"
+        fill="#281f1f"
+        opacity="0.8"
+        stroke="#000000"
+        stroke-width="2"
+        paint-order="stroke fill"
+      >
+        About
+      </text>
+  
+      <a href="projects.html" style="cursor: pointer;">
+  
+        <!-- PROJECTS BACKGROUND RECT -->
+        <rect
+          x="500"
+          y="182"
+          width="120"
+          height="40"
+          rx="8"
+          fill="white"
+          opacity="0.15"
+        />
+      
+        <!-- PROJECT TEXT SHADOW -->
+        <text
+          x="559.5"
+          y="205"
+          text-anchor="middle"
+          dominant-baseline="middle"
+          font-family="League Spartan, sans-serif"
+          font-size="30"
+          font-weight="700"
+          fill="#000000"
+          opacity="0.1"
+          transform="translate(2 2)"
+        >
+          Projects
+        </text>
+      
+        <!-- PROJECT TEXT -->
+        <text
+          x="560"
+          y="205"
+          text-anchor="middle"
+          dominant-baseline="middle"
+          font-family="League Spartan, sans-serif"
+          font-size="30"
+          font-weight="700"
+          fill="#281f1f"
+          opacity="0.8"
+          stroke="#000000"
+          stroke-width="2"
+          paint-order="stroke fill"
+        >
+          Projects
+        </text>
+      
+      </a>      
 
-    <section id="about" class="about">
-        <h2>About Me</h2>
-        <p>This is the about section content.</p>
-        <img src="path/to/your/image.jpg" alt="About Me Image">
-    </section>
+      <!-- SHADOW FOR LATEST WORK -->
+      <text
+        x="400"
+        y="275"
+        text-anchor="middle"
+        dominant-baseline="middle"
+        font-family="League Spartan, sans-serif"
+        font-size="30"
+        font-weight="700"
+        fill="#020037"
+        opacity="0.1"
+        transform="translate(2 2)"
+      >
+        Latest Work:
+      </text>
 
-    <div class="dropdown background-dropdown">
-        <a href="#" class="dropbtn" id="picker-button">Backgrounds</a>
-        <ul class="dropdown-content" id="picker-options">
-            <li class="background-option" data-image="media/silly.png">Silly Kitten</li>
-            <li class="background-option" data-image="media/back1.png">Logo</li>
-            <li class="background-option" data-image="media/back2.png">Old man</li>
-        </ul>
-    </div>
+      <!-- MAIN TEXT -->
+      <text
+        x="400"
+        y="275"
+        text-anchor="middle"
+        dominant-baseline="middle"
+        font-family="League Spartan, sans-serif"
+        font-size="30"
+        font-weight="700"
+        fill="#000000"
+        opacity="0.8"
+        stroke="#FFFFFF"
+        stroke-width="1.5"
+        paint-order="stroke fill"
+      >
+        Latest Work:
+      </text>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
-    <script src="script.js"></script>
+<!-- CLIP PATHS -->
+<defs>
+  <clipPath id="clip1">
+    <rect x="150" y="330" width="120" height="180" rx="12" />
+  </clipPath>
+  <clipPath id="clip2">
+    <rect x="340" y="330" width="120" height="180" rx="12" />
+  </clipPath>
+  <clipPath id="clip3">
+    <rect x="530" y="330" width="120" height="180" rx="12" />
+  </clipPath>
+</defs>
+
+<!-- RECTANGLES AS BORDERS -->
+<rect x="150" y="330" width="120" height="180" rx="12" fill="none" stroke="#000" stroke-width="4" />
+<rect x="340" y="330" width="120" height="180" rx="12" fill="none" stroke="#000" stroke-width="4" />
+<rect x="530" y="330" width="120" height="180" rx="12" fill="none" stroke="#000" stroke-width="4" />
+
+<!-- IMAGES CLIPPED TO RECTANGLES -->
+<image x="150" y="330" width="120" height="180" xlink:href="media/poster1.jpg" clip-path="url(#clip1)" preserveAspectRatio="xMidYMid slice" />
+<image x="340" y="330" width="120" height="180" xlink:href="media/poster2.jpg" clip-path="url(#clip2)" preserveAspectRatio="xMidYMid slice" />
+<image x="530" y="330" width="120" height="180" xlink:href="media/poster3.jpg" clip-path="url(#clip3)" preserveAspectRatio="xMidYMid slice" />
+
+    </svg>
+</section>
+
+<!-- 3D Canvas -->
+<canvas id="myCanvas"></canvas>
+
+
+<!-- Invisible Center Button -->
+<div class="center-button-container">
+    <button class="center-button"></button>
+</div>
+
+<!-- Scripts -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
+<script src="script.js"></script>
 </body>
+
 </html>

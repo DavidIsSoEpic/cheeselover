@@ -1,3 +1,4 @@
+/* Loading Screen */
 #loading-screen {
     position: fixed;
     top: 0;
@@ -23,153 +24,47 @@
 }
 
 @keyframes spin {
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(360deg);
-    }
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
 }
 
+/* Body */
 body {
     margin: 0;
     font-family: 'Poppins', sans-serif;
-    color: #333;
-    overflow: hidden;
+    color: #fff;
+    background-color: #111;
 }
 
-nav {
-    position: fixed; 
-    top: 0;
-    left: 0;
-    right: 0;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px 50px;
-    background-color: rgba(51, 51, 51); 
-    color: white;
-    z-index: 1000; 
-}
-
-nav .logo {
-    font-size: 24px;
-    font-weight: 600;
-}
-
-nav ul {
-    list-style: none;
-    display: flex;
-    margin: 0;
-    padding: 0;
-}
-
-nav ul li {
-    position: relative; 
-    margin-left: 20px;
-}
-
-nav ul li a {
-    text-decoration: none;
-    color: white;
-    transition: color 0.3s;
-    padding: 10px 15px;
-    display: inline-block;
-}
-
-nav ul li a:hover {
-    color: #ff6347;
-}
-
-.dropdown-content {
-    display: none; 
-    position: absolute;
-    background-color: rgba(68, 68, 68, 0.9);
-    min-width: 150px;
-    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
-    z-index: 1;
-    border-radius: 5px;
-    overflow: hidden;
-    margin-top: 0; 
-    left: 0; 
-    right: auto; 
-}
-
-.dropdown-content li {
-    margin: 0;
-    padding: 0;
-}
-
-.dropdown-content li a {
-    padding: 10px 15px;
-    color: white;
-    display: block;
-    text-align: left;
-}
-
-.dropdown-content li a:hover {
-    background-color: rgba(85, 85, 85, 0.9);
-}
-
-.dropdown:hover .dropdown-content {
-    display: block;
-    animation: fadeIn 0.2s ease-in-out;
-}
-
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(-10px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+/* Hero Section */
+.hero-wrapper {
+    position: relative;
+    height: 100vh;
 }
 
 .hero {
-    position: fixed; 
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
+    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    color: white;
-    text-align: center;
-    z-index: 10; 
-    pointer-events: none; 
+    position: relative;
+    z-index: 10; /* above canvas */
 }
 
-.hero h1 {
-    font-size: 48px;
-    margin-bottom: 20px;
+.hero-svg {
+    width: 100%;
+    height: 600px;
+    pointer-events: auto;
 }
 
-.hero p {
-    font-size: 18px;
-    margin-bottom: 30px;
+/* Other Hero Elements (optional) */
+.hero h1, .hero p {
+    margin: 0;
 }
 
-.hero button {
-    padding: 10px 20px;
-    background-color: white;
-    color: #ff6347;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    pointer-events: auto; 
-}
-
-.hero button:hover {
-    background-color: #ff9472;
-    color: white;
-}
-
+/* Canvas */
 #myCanvas {
-    position: fixed;
+    position: absolute;
     top: 0;
     left: 0;
     width: 100%;
@@ -177,50 +72,149 @@ nav ul li a:hover {
     z-index: 1; 
 }
 
+/* Hide Background Button Dropdown */
 .background-dropdown {
+    display: none;
+}
+
+/* Center Button */
+.center-button-container {
     position: fixed;
-    bottom: 20px;
-    left: 5px;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    pointer-events: none;
     z-index: 1000;
 }
 
-.background-dropdown .dropbtn {
-    background-color: #444;
-    color: white;
-    padding: 10px 15px;
-    border-radius: 5px;
-    text-decoration: none;
-    transition: background-color 0.3s;
-}
-
-.background-dropdown .dropbtn:hover {
-    background-color: #ff6347;
-}
-
-.background-dropdown .dropdown-content {
-    display: none;
-    position: absolute;
-    top: -140px; 
-    left: 0;
-    background-color: rgba(68, 68, 68, 0.9);
-    min-width: 150px;
-    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
-    border-radius: 5px;
-    animation: fadeIn 0.3s ease-in-out;
-    overflow: hidden;
-}
-
-.background-dropdown:hover .dropdown-content,
-.background-dropdown .dropdown-content:hover {
-    display: block;
-}
-
-.background-dropdown .dropdown-content li {
-    padding: 10px 15px;
-    color: white;
+.center-button {
+    width: 100px;
+    height: 100px;
+    opacity: 0;
+    border-radius: 50%;
+    border: none;
     cursor: pointer;
+    pointer-events: auto;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    position: absolute;
+    left: 490px; 
+    top: 300px;
 }
 
-.background-dropdown .dropdown-content li:hover {
-    background-color: rgba(85, 85, 85, 0.9);
+/* Projects Sections */
+.other-projects, .more-projects {
+    padding: 80px 50px;
+    text-align: center;
+    background-color: #222;
+    color: #fff;
+    z-index: 100;
+    position: relative;
+}
+
+.other-projects h2, .more-projects h2 {
+    font-size: 36px;
+    margin-bottom: 40px;
+    color: #ff6347;
+}
+
+.project-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    padding: 20px;
+}
+
+.project-card {
+    background-color: #333;
+    padding: 25px;
+    border-radius: 10px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.project-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+.project-card img {
+    width: 100%;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.project-card h3 {
+    font-size: 24px;
+    margin-bottom: 15px;
+    color: #ff9472;
+}
+
+.project-card p {
+    font-size: 16px;
+    margin-bottom: 20px;
+    color: #ddd;
+}
+
+.project-link {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #ff6347;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.project-link:hover {
+    background-color: #ff9472;
+}
+
+.project-list ul {
+    list-style: none;
+    padding: 0;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.project-list ul li {
+    margin-bottom: 20px;
+    padding: 15px;
+    background-color: #333;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+}
+
+.project-list ul li:hover {
+    background-color: #444;
+}
+
+.project-list ul li a {
+    color: #ff9472;
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+.project-list ul li a:hover {
+    color: #ff6347;
+}
+/* Fixed logo top-left */
+.logo {
+    position: fixed;
+    top: 20px;       /* distance from top */
+    left: 20px;      /* distance from left */
+    z-index: 1000;   /* above everything else */
+}
+
+.logo img {
+    width: 120px;     /* adjust size as needed */
+    height: auto;
+    display: block;
 }

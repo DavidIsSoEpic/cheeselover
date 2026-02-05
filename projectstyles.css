@@ -1,0 +1,117 @@
+/* Full black screen with background image */
+body, html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #000; /* black background */
+}
+
+/* HERO SECTION */
+.projects-hero {
+    width: 100%;
+    min-height: 700px;
+    background: url('media/projector.png') center/cover no-repeat;
+    position: relative;
+}
+
+
+.hero-svg {
+    width: 100%;
+    height: 600px;
+    pointer-events: auto;
+
+}
+/* Fixed logo top-left */
+.logo {
+    position: fixed;
+    top: 20px;       /* distance from top */
+    left: 20px;      /* distance from left */
+    z-index: 1000;   /* above everything else */
+}
+
+.logo img {
+    width: 120px;     /* adjust size as needed */
+    height: auto;
+    display: block;
+}
+.projects-hero {
+    position: relative; /* parent for absolute positioning */
+    width: 100%;
+    height: 100vh;
+}
+
+.video-placeholder {
+    position: absolute; /* independent positioning */
+    top: 120px;         /* vertical position for all videos */
+}
+
+/* First video (Silent Deodorant) */
+.video-placeholder.first-video {
+    left: 230px;        /* horizontal alignment under Silent Deodorant */
+}
+
+/* Second video (John Stock) */
+.video-placeholder.second-video {
+    left: 800px;        /* horizontal alignment under John Stock */
+}
+/* First video (Silent Deodorant) */
+.video-placeholder.third-video {
+    left: 230px; 
+    top: 450px;       /* horizontal alignment under Silent Deodorant */
+}
+
+/* Second video (John Stock) */
+.video-placeholder.forth-video {
+    top: 450px;        /* horizontal alignment under John Stock */
+    left: 800px;
+}
+
+/* Video styling */
+.video-placeholder video {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+.video-caption {
+    position: absolute;               /* independent positioning */
+    font-family: 'League Spartan', sans-serif;
+    font-weight: 700;
+    font-size: 20px;                  /* same as SVG */
+    color: #000000;                   /* fill color = SVG fill */
+    -webkit-text-stroke: 2px #ffffff; /* stroke color & width = SVG stroke */
+    -moz-text-stroke: 2px #ffffff;
+    text-stroke: 2px #ffffff;         /* fallback */
+    line-height: 1.3;
+    text-align: center;
+    opacity: 0.8;                     /* same as SVG */
+    paint-order: stroke fill;          /* mimic SVG paint-order */
+}
+.video-caption-shadow {
+    position: absolute;
+    font-family: 'League Spartan', sans-serif;
+    font-weight: 700;
+    font-size: 20px;                 /* same as main text */
+    color: #000000;                /* shadow color = SVG shadow fill */
+    opacity: 0.1;                     /* low opacity like SVG shadow */
+    -webkit-text-stroke: none;        /* shadows usually don't have stroke */
+    line-height: 1.3;
+    text-align: center;
+    left: 0;                          /* will be positioned with top/left in HTML */
+    top: 0;
+    pointer-events: none;             /* optional, so it doesn’t block clicks */
+}
+
+
+/* Position captions under videos */
+.third-video-caption {
+    top: 675px;  /* bottom of third video + small padding */
+    left: 230px; /* align horizontally with video */
+    width: 400px; /* match video width */
+}
+
+.forth-video-caption {
+    top: 675px;  /* bottom of forth video + small padding */
+    left: 800px; /* align horizontally with video */
+    width: 400px; /* match video width */
+}

@@ -164,3 +164,18 @@ function onWindowResize() {
 
 window.addEventListener('resize', onWindowResize, false);
 init();
+
+// Wait for the DOM to be fully loaded
+document.addEventListener('DOMContentLoaded', function() {
+    // Get the button element
+    const centerButton = document.querySelector('.center-button');
+    
+    // Add click event listener to the button
+    if (centerButton) {
+        centerButton.addEventListener('click', function() {
+            // Navigate to secret.html
+            window.location.href = 'secret.html';
+        });
+    }
+});
+
