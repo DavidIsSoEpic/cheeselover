@@ -115,3 +115,57 @@ body, html {
     left: 800px; /* align horizontally with video */
     width: 400px; /* match video width */
 }
+.video-caption-link {
+    position: absolute;
+    left: 0;
+    top: 0;
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+}
+
+.video-caption-link:hover .video-caption {
+    opacity: 1;
+}
+.top-nav {
+    position: fixed;
+    top: 10px;
+    right: 40px;
+    display: flex;
+    gap: 40px;
+    z-index: 1000;
+}
+
+.top-nav a {
+    position: relative;
+    font-family: 'League Spartan', sans-serif;
+    font-weight: 700;
+    font-size: 30px;
+
+    color: #c6c6c6;
+    -webkit-text-stroke: 2px #000;
+    text-stroke: 2px #000;
+
+    text-decoration: none; /* remove default underline */
+    paint-order: stroke fill;
+}
+
+.top-nav a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 1px; /* distance from text */
+    width: 100%;
+    height: 2px; /* thickness of underline */
+
+    background: #c6c6c6; /* white fill */
+    
+    /* black outline effect */
+    box-shadow: 
+        0 0 0 0.4px #000;
+    
+}
+
+.top-nav a:hover {
+    opacity: 0.8;
+}
