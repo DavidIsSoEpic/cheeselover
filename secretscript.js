@@ -1,46 +1,57 @@
 document.addEventListener('DOMContentLoaded', function() {
     const fishContainer = document.getElementById('fish-container');
-    const fishImages = ['Media/fish1.png', 'Media/fish2.png', 'Media/fish3.png']; // Add your fish image filenames
-    const numFish = 10; // Number of fish to create
+    const fishImages = ['Media/fish1.png', 'Media/fish2.png', 'Media/fish3.png'];
+    const numFish = 50;
 
-    function createFish() {
-        const fish = document.createElement('img');
-        fish.src = fishImages[Math.floor(Math.random() * fishImages.length)];
-        fish.className = 'fish';
-        fish.style.left = `${Math.random() * 90}vw`; // Ensure initial position is within bounds
-        fish.style.top = `${Math.random() * 90}vh`;
-        fishContainer.appendChild(fish);
-        return fish;
-    }
+    class Fish {
+        constructor() {
+            this.fish = document.createElement('img');
+            this.fish.src = fishImages[Math.floor(Math.random() * fishImages.length)];
+            this.fish.className = 'fish';
+            this.fish.style.left = `${Math.random() * window.innerWidth}px`;
+            this.fish.style.top = `${Math.random() * window.innerHeight}px`;
+            fishContainer.appendChild(this.fish);
 
-    function moveFish(fish) {
-        const fishRect = fish.getBoundingClientRect();
-        const maxX = window.innerWidth - fishRect.width;
-        const maxY = window.innerHeight - fishRect.height;
-
-        let newX = Math.random() * maxX;
-        let newY = Math.random() * maxY;
-
-        // Ensure the fish stays within the screen boundaries
-        newX = Math.max(0, Math.min(newX, maxX));
-        newY = Math.max(0, Math.min(newY, maxY));
-
-        fish.style.transform = `translate(${newX}px, ${newY}px)`;
-
-        // Flip the fish horizontally if moving right
-        if (newX > parseFloat(fish.style.left)) {
-            fish.style.transform += ' scaleX(-1)';
-        } else {
-            fish.style.transform += ' scaleX(1)';
+            this.speed = 50 + Math.random() * 100; // pixels per second
+            this.angle = Math.random() * 2 * Math.PI;
+            this.lastTime = performance.now();
         }
 
-        fish.style.left = `${newX}px`;
-        fish.style.top = `${newY}px`;
+        update(currentTime) {
+            const delta = (currentTime - this.lastTime) / 1000; // seconds
+            this.lastTime = currentTime;
+
+            // Calculate new position
+            let x = parseFloat(this.fish.style.left) + Math.cos(this.angle) * this.speed * delta;
+            let y = parseFloat(this.fish.style.top) + Math.sin(this.angle) * this.speed * delta;
+
+            // Bounce off edges
+            if (x < 0 || x > window.innerWidth - this.fish.width) {
+                this.angle = Math.PI - this.angle;
+                x = Math.max(0, Math.min(x, window.innerWidth - this.fish.width));
+            }
+            if (y < 0 || y > window.innerHeight - this.fish.height) {
+                this.angle = -this.angle;
+                y = Math.max(0, Math.min(y, window.innerHeight - this.fish.height));
+            }
+
+            this.fish.style.left = `${x}px`;
+            this.fish.style.top = `${y}px`;
+
+            // Flip horizontally depending on direction
+            this.fish.style.transform = `scaleX(${Math.cos(this.angle) < 0 ? -1 : 1})`;
+        }
     }
 
-    // Create initial fish
+    const fishes = [];
     for (let i = 0; i < numFish; i++) {
-        const fish = createFish();
-        setInterval(() => moveFish(fish), 3000 + Math.random() * 2000);
+        fishes.push(new Fish());
     }
+
+    function animate(time) {
+        fishes.forEach(fish => fish.update(time));
+        requestAnimationFrame(animate);
+    }
+
+    requestAnimationFrame(animate);
 });
